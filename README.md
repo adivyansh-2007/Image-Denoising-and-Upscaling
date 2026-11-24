@@ -17,32 +17,6 @@ The approach has two stages: denoise first, then upscale with a pretrained trans
 
 Shared model definitions are in `models/`.
 
-## Usage
-
-```bash
-pip install -r requirements.txt
-```
-
-Expected layout (no data is included in this repository):
-
-```
-data/noisy/       noisy low-res .npy files
-data/clean_hr/    clean high-res .npy targets, paired by filename
-data/denoised/    output of a stage 1 denoiser
-checkpoints/      pretrained weights
-```
-
-Run everything from the repository root:
-
-```bash
-python -m se_resunet_edge_aware_denoiser.train_se_resunet_denoiser
-python -m nafnet_denoiser.nafnet_batch_denoise
-python -m hat_super_resolution_finetuning.finetune_hat_sr
-python -m two_stage_denoise_and_hat_sr_evaluation.evaluate_denoise_hat_pipeline
-```
-
-Paths and hyperparameters are set in the `CONFIG` dict at the top of each script.
-
 ## Attribution
 
 `models/hat_arch.py` is adapted from [HAT](https://github.com/XPixelGroup/HAT) (Apache-2.0). `models/swinir_arch.py` is adapted from [SwinIR](https://github.com/JingyunLiang/SwinIR) (Apache-2.0). Pretrained weights are from those projects and are not included here.
